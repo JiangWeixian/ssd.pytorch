@@ -151,7 +151,7 @@ class ToTensor(object):
         return torch.from_numpy(cvimage)
 
 
-class RandomSampleCrop(img, boxes, labels, mode):
+class RandomSampleCrop(object):
     """Crop
     Arguments:
         img (Image): the image being input during training
@@ -177,10 +177,10 @@ class RandomSampleCrop(img, boxes, labels, mode):
             (None, None),
         )
 
-    def __call__(img, boxes, labels):
+    def __call__(self, img, boxes, labels):
         mode = random.choice(self.sample_options)
         while True:
-            height, width, _ = image.shape
+            height, width, _ = img.shape
 
             if mode is None:
                 return img, boxes, labels
