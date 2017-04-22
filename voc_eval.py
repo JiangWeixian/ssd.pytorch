@@ -8,7 +8,7 @@ from data import VOCroot
 from data import VOC_CLASSES as labelmap
 import torch.utils.data as data
 
-from data import AnnotationTransform, VOCDetection, base_transform
+from data import AnnotationTransform, VOCDetection, BaseTransform
 from ssd import build_ssd
 
 from PIL import Image
@@ -161,8 +161,6 @@ def do_python_eval(output_dir='output', use_07=True):
     print('--------------------------------------------------------------')
     print('Results computed with the **unofficial** Python eval code.')
     print('Results should be very close to the official MATLAB eval code.')
-    print('Recompute with `./tools/reval.py --matlab ...` for your paper.')
-    print('-- Thanks, The Management')
     print('--------------------------------------------------------------')
 
 
@@ -413,5 +411,5 @@ if __name__ == '__main__':
         cudnn.benchmark = True
     # evaluation
     test_net(args.save_folder, net, args.cuda, dataset,
-             base_transform(net.size, (104, 117, 123)), args.top_k, 300,
+             BaseTransform(net.size, (104, 117, 123)), args.top_k, 300,
              thresh=args.confidence_threshold)
