@@ -116,3 +116,4 @@ dev.ipynb
 # temp checkout soln
 data/datasets/
 data/ssd_dataloader.py
+gpu_cam.py
